@@ -1185,7 +1185,7 @@ static void homeaxis(int axis) {
 
   if (axis==X_AXIS ? HOMEAXIS_DO(X) :
       axis==Y_AXIS ? HOMEAXIS_DO(Y) :
-      axis==Z_AXIS ? HOMEAXIS_DO(Z) :
+      axis==Z_AXIS ? /* HOMEAXIS_DO(Z) */ 0 :
       0) {
     int axis_home_dir = home_dir(axis);
 #ifdef DUAL_X_CARRIAGE
@@ -4035,6 +4035,7 @@ void clamp_to_software_endstops(float target[3])
   if (min_software_endstops) {
     if (target[X_AXIS] < min_pos[X_AXIS]) target[X_AXIS] = min_pos[X_AXIS];
     if (target[Y_AXIS] < min_pos[Y_AXIS]) target[Y_AXIS] = min_pos[Y_AXIS];
+    if (target[Z_AXIS] < min_pos[Z_AXIS]) target[Z_AXIS] = min_pos[Z_AXIS];
     
     float negative_z_offset = 0;
     #ifdef ENABLE_AUTO_BED_LEVELING
@@ -4042,7 +4043,8 @@ void clamp_to_software_endstops(float target[3])
       if (add_homing[Z_AXIS] < 0) negative_z_offset = negative_z_offset + add_homing[Z_AXIS];
     #endif
     
-    if (target[Z_AXIS] < min_pos[Z_AXIS]+negative_z_offset) target[Z_AXIS] = min_pos[Z_AXIS]+negative_z_offset;
+    // Disable z-homing on framelis without endstops
+    //if (target[Z_AXIS] < min_pos[Z_AXIS]+negative_z_offset) target[Z_AXIS] = min_pos[Z_AXIS]+negative_z_offset;
   }
 
   if (max_software_endstops) {
