@@ -2120,7 +2120,7 @@ static void homeaxis(AxisEnum axis) {
   #define HOMEAXIS_DO(LETTER) \
     ((LETTER##_MIN_PIN > -1 && LETTER##_HOME_DIR==-1) || (LETTER##_MAX_PIN > -1 && LETTER##_HOME_DIR==1))
 
-  if (axis == X_AXIS ? HOMEAXIS_DO(X) : axis == Y_AXIS ? HOMEAXIS_DO(Y) : axis == Z_AXIS ? HOMEAXIS_DO(Z) : 0) {
+  if (axis == X_AXIS ? HOMEAXIS_DO(X) : axis == Y_AXIS ? HOMEAXIS_DO(Y) : axis == Z_AXIS ? /* HOMEAXIS_DO(Z) */ 0 : 0) {
 
     int axis_home_dir =
       #if ENABLED(DUAL_X_CARRIAGE)
@@ -7101,7 +7101,9 @@ void clamp_to_software_endstops(float target[3]) {
         negative_z_offset += home_offset[Z_AXIS];
       }
     #endif
-    NOLESS(target[Z_AXIS], sw_endstop_min[Z_AXIS] + negative_z_offset);
+
+    // Disable z-homing on framelis without endstops
+    //NOLESS(target[Z_AXIS], min_pos[Z_AXIS] + negative_z_offset);
   }
 
   if (max_software_endstops) {
