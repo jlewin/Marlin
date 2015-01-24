@@ -63,11 +63,11 @@ Here are some standard links for getting your machine calibrated:
 #endif
 
 // Define this to set a custom name for your generic Mendel,
-// #define CUSTOM_MENDEL_NAME "This Mendel"
+#define CUSTOM_MENDEL_NAME "Framelis v1"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
-// #define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
+#define MACHINE_UUID "155f84b5-d4d7-46f4-9432-667e6876f37a"
 
 // This defines the number of extruders
 #define EXTRUDERS 1
