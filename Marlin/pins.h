@@ -602,14 +602,14 @@
     #define Y_STEP_PIN         60
     #define Y_DIR_PIN          61
     #define Y_ENABLE_PIN       56
-    #define Y_MIN_PIN          -1 //14 jlewin - disable endstops
+    #define Y_MIN_PIN          -1 // 14 jlewin - disable endstops
     #define Y_MAX_PIN          15
 
     #define Z_STEP_PIN         46
     #define Z_DIR_PIN          48
     #define Z_ENABLE_PIN       62
-    #define Z_MIN_PIN          18
-    #define Z_MAX_PIN          19
+    #define Z_MIN_PIN          -1 // 18 jlewin - disable endstops
+    #define Z_MAX_PIN          -1 // 19 jlewin - disable endstops
 
     #define Y2_STEP_PIN        36
     #define Y2_DIR_PIN         34
@@ -656,7 +656,7 @@
   #endif
 
   #if MB(RAMPS_13_EFB) || MB(RAMPS_13_EFF) || MB(AZTEEG_X3) || MB(AZTEEG_X3_PRO)
-    #define FAN_PIN            9 // (Sprinter config)
+    #define FAN_PIN            -1 // (Sprinter config)
   #else
     #define FAN_PIN            4 // IO pin. Buffer needed
   #endif
