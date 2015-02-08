@@ -64,7 +64,7 @@
 #endif
 
 #if MB(RAMPS_13_EFB) || MB(RAMPS_13_EFF) || MB(AZTEEG_X3) || MB(AZTEEG_X3_PRO) || MB(WITBOX) || MB(HEPHESTOS)
-  #define FAN_PIN            9 // (Sprinter config)
+  #define FAN_PIN           -1  // jlewin (autofan config) - 9 (Sprinter config)
   #if MB(RAMPS_13_EFF)
     #define CONTROLLERFAN_PIN  -1 // Pin used for the fan to cool controller
   #endif
@@ -83,7 +83,7 @@
 #endif
 
 #if MB(RAMPS_13_EFF)
-  #define HEATER_0_PIN       8
+  #define HEATER_0_PIN       10 // jlewin - prefer pin 10 over pin 8
 #else
   #define HEATER_0_PIN       10   // EXTRUDER 1
 #endif
