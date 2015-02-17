@@ -2476,6 +2476,10 @@ Sigma_Exit:
       if(setTargetedHotend(105)){
         break;
         }
+
+      // jlewin - move one step closer to the target temp every M105 request
+      bumpVirtualTemp();
+
       #if defined(TEMP_0_PIN) && TEMP_0_PIN > -1
         SERIAL_PROTOCOLPGM("ok T:");
         SERIAL_PROTOCOL_F(degHotend(tmp_extruder),1);
@@ -2610,6 +2614,10 @@ Sigma_Exit:
             #endif
             codenum = millis();
           }
+
+          // jlewin - move one step closer to the target temp every iteration
+          bumpVirtualTemp();
+
           manage_heater();
           manage_inactivity();
           lcd_update();
@@ -4395,6 +4403,20 @@ void calculate_delta(float cartesian[3]){
 }
 
 #endif
+
+
+void bumpVirtualTemp()
+{
+    // jlewin - Move the current temp one step closer to the target
+    if(current_temperature[tmp_extruder] < target_temperature[tmp_extruder])
+    {
+        current_temperature[tmp_extruder]++;
+    }
+    else if(current_temperature[tmp_extruder] > target_temperature[tmp_extruder])
+    {
+        current_temperature[tmp_extruder]--;
+    }
+}
 
 #ifdef TEMP_STAT_LEDS
 static bool blue_led = false;

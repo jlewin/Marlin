@@ -113,6 +113,9 @@ FORCE_INLINE float degTargetBed() {
 
 FORCE_INLINE void setTargetHotend(const float &celsius, uint8_t extruder) {  
   target_temperature[extruder] = celsius;
+  
+  // jlewin - set the initial temp to ramp up from
+  current_temperature[extruder] =  celsius == 0 ? 0 : celsius - 10;
 };
 
 FORCE_INLINE void setTargetBed(const float &celsius) {  

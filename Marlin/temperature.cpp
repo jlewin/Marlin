@@ -803,6 +803,8 @@ static float analog2tempBed(int raw) {
     and this function is called from normal context as it is too slow to run in interrupts and will block the stepper routine otherwise */
 static void updateTemperaturesFromRawValues()
 {
+  /*
+	jlewin - disable actual temp readings
     #ifdef HEATER_0_USES_MAX6675
         current_temperature_raw[0] = read_max6675();
     #endif
@@ -823,6 +825,7 @@ static void updateTemperaturesFromRawValues()
     CRITICAL_SECTION_START;
     temp_meas_ready = false;
     CRITICAL_SECTION_END;
+    */
 }
 
 
