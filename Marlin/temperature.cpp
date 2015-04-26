@@ -47,6 +47,7 @@
 #endif
 #define PID_dT ((OVERSAMPLENR * 12.0)/(F_CPU / 64.0 / 256.0))
 
+int raw_temp_bed_value = 0;
 int target_temperature[EXTRUDERS] = { 0 };
 int target_temperature_bed = 0;
 int current_temperature_raw[EXTRUDERS] = { 0 };
@@ -1324,7 +1325,6 @@ ISR(TIMER0_COMPB_vect)
   static unsigned long raw_temp_1_value = 0;
   static unsigned long raw_temp_2_value = 0;
   static unsigned long raw_temp_3_value = 0;
-  static unsigned long raw_temp_bed_value = 0;
   static unsigned char temp_state = 12;
   static unsigned char pwm_count = (1 << SOFT_PWM_SCALE);
   static unsigned char soft_pwm_0;
@@ -1735,7 +1735,7 @@ ISR(TIMER0_COMPB_vect)
       break;
     case 3: // Measure TEMP_BED
       #if defined(TEMP_BED_PIN) && (TEMP_BED_PIN > -1)
-        raw_temp_bed_value += ADC;
+        //raw_temp_bed_value += ADC;
       #endif
       temp_state = 4;
       break;

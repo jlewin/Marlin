@@ -2666,6 +2666,9 @@ Sigma_Exit:
             SERIAL_PROTOCOLLN("");
             codenum = millis();
           }
+		  
+		  bumpVirtualTemp();
+		  
           manage_heater();
           manage_inactivity();
           lcd_update();
@@ -4416,6 +4419,19 @@ void bumpVirtualTemp()
     {
         current_temperature[tmp_extruder]--;
     }
+
+    if(current_temperature_bed < target_temperature_bed)
+    {
+		current_temperature_bed++;
+      //raw_temp_bed_value++;
+    }
+    else if(current_temperature_bed > target_temperature_bed)
+    {
+		current_temperature_bed--;
+      //raw_temp_bed_value--;
+    }
+      
+    //current_temperature_bed = raw_temp_bed_value;
 }
 
 #ifdef TEMP_STAT_LEDS

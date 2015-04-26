@@ -39,6 +39,9 @@ void manage_heater(); //it is critical that this is called periodically.
  int widthFil_to_size_ratio();
 #endif
 
+extern int raw_temp_bed_value;
+
+
 // low level conversion routines
 // do not use these routines and variables outside of temperature.cpp
 extern int target_temperature[EXTRUDERS];  
@@ -115,11 +118,15 @@ FORCE_INLINE void setTargetHotend(const float &celsius, uint8_t extruder) {
   target_temperature[extruder] = celsius;
   
   // jlewin - set the initial temp to ramp up from
-  current_temperature[extruder] =  celsius == 0 ? 0 : celsius - 10;
+  current_temperature[extruder] = (celsius == 0) ? 0 : celsius - 10;
 };
 
 FORCE_INLINE void setTargetBed(const float &celsius) {  
   target_temperature_bed = celsius;
+  
+  // jlewin - set the initial temp to ramp up from
+  current_temperature_bed = (celsius == 0) ? 0 : celsius - 10;
+  //raw_temp_bed_value = (celsius == 0) ? 0 : celsius - 10;
 };
 
 FORCE_INLINE bool isHeatingHotend(uint8_t extruder){  
