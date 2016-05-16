@@ -105,7 +105,8 @@
 #endif
 
 #if MB(RAMPS_14_EFF) || MB(RAMPS_13_EFF) || ENABLED(IS_RAMPS_EFB)
-  #define FAN_PIN           9 // (Sprinter config)
+  #define FAN_PIN           -1  // jlewin (autofan config) - 9 (Sprinter config)
+
   #if MB(RAMPS_14_EFF) || MB(RAMPS_13_EFF)
     #define CONTROLLERFAN_PIN  -1 // Pin used for the fan to cool controller
   #endif
@@ -122,7 +123,7 @@
 #endif
 
 #if MB(RAMPS_14_EFF) || MB(RAMPS_13_EFF)
-  #define HEATER_0_PIN      8
+  #define HEATER_0_PIN      10
 #else
   #define HEATER_0_PIN     10   // EXTRUDER 1
 #endif

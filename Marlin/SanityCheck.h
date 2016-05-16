@@ -455,6 +455,7 @@
 /**
  * Endstops
  */
+ /*
 #if DISABLED(USE_XMIN_PLUG) && DISABLED(USE_XMAX_PLUG) && !(ENABLED(Z_DUAL_ENDSTOPS) && Z2_USE_ENDSTOP >= _XMAX_ && Z2_USE_ENDSTOP <= _XMIN_)
  #error You must enable USE_XMIN_PLUG or USE_XMAX_PLUG
 #elif DISABLED(USE_YMIN_PLUG) && DISABLED(USE_YMAX_PLUG) && !(ENABLED(Z_DUAL_ENDSTOPS) && Z2_USE_ENDSTOP >= _YMAX_ && Z2_USE_ENDSTOP <= _YMIN_)
@@ -464,7 +465,7 @@
 #elif ENABLED(Z_DUAL_ENDSTOPS) && !Z2_USE_ENDSTOP
  #error You must set Z2_USE_ENDSTOP with Z_DUAL_ENDSTOPS
 #endif
-
+*/
 /**
  * Warnings for old configurations
  */
